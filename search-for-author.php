@@ -1,12 +1,34 @@
 <?php
+/*
+scopus-api-scripts
+http://www.github.com/braunsg/scopus-api-scripts
 
-// Created by Steven Braun, 2015-06-08
+Copyright (c) 2015 Steven Braun
+Created: 2015-06-08
+Last updated: 2015-07-14
 
-// This script does a search for an author based on name and affiliation
-// using the Scopus author API
-// API base: http://api.elsevier.com/content/search/author
-// Script current as of API 2015-06-02 release
-// API documentation: http://api.elsevier.com/documentation/AUTHORSearchAPI.wadl
+This script does a search for an author based on name and affiliation
+using the Scopus author API
+
+API base: http://api.elsevier.com/content/search/scopus
+Script current as of API 2015-06-02 release
+API documentation: http://api.elsevier.com/documentation/SCOPUSSearchAPI.wadl
+
+This script is shared under an MIT License, which grants free use, modification, 
+and distribution for all users. See LICENSE.md for more details.
+
+//////////////////////////////////////////////////////////////////////////////////////////
+///// NOTE
+
+This script is adapted from scripts used to pull data for Manifold, the research impact 
+analytics system developed by Steven Braun for the University of Minnesota Medical School
+
+FOR MORE INFO, see
+
+manifold-impact-analytics
+http://www.github.com/braunsg/manifold-impact-analytics
+
+////////////////////////////////////////////////////////////////////////////////////////*/
 
 
 // Define an array of known author names to loop through; these are the names of people
@@ -56,7 +78,7 @@ foreach($nameArray as $nameData) {
 		// Define the query string for the API in a variable. This string can be written in the
 		// same way as an advanced search string on the Scopus online database, with some field names changed.
 		// Here, I will do a search for authors with the first/last name indicated 
-		// and with an affiliation of 'University of Minnesota' at some point in their affiliation history 
+		// and with an EXAMPLE affiliation of 'University of Minnesota' at some point in their affiliation history 
 		// NOTE: The query string must be URL-encoded
 
 		$query = urlencode("affil(university of minnesota) AND authfirst(" . $firstName . ") AND authlast(" . $lastName . ")");
@@ -142,6 +164,8 @@ foreach($nameArray as $nameData) {
 				
 					// This is where you'd take the JSON data and do what you want with it,
 					// such as dump it into a database, do some analyses, echo it out, etc.
+					// See get-publication-data_mysql.php and 
+					// get-author-publications_mysql.php for examples
 				
 					print_r($authorInfo);
 

@@ -1,0 +1,77 @@
+/*
+scopus-api-scripts
+http://www.github.com/braunsg/scopus-api-scripts
+
+Copyright (c) 2015 Steven Braun
+Created: 2015-07-14
+
+This MySQL query creates the structure for a generic table holding information about 
+faculty/researcher authorships (publications)
+
+This script is shared under an MIT License, which grants free use, modification, 
+and distribution for all users. See LICENSE.md for more details.
+
+//////////////////////////////////////////////////////////////////////////////////////////
+///// NOTE
+
+This script is adapted from scripts used to pull data for Manifold, the research impact 
+analytics system developed by Steven Braun for the University of Minnesota Medical School
+
+FOR MORE INFO, see
+
+manifold-impact-analytics
+http://www.github.com/braunsg/manifold-impact-analytics
+
+////////////////////////////////////////////////////////////////////////////////////////*/
+-- phpMyAdmin SQL Dump
+-- version 4.4.4
+-- http://www.phpmyadmin.net
+--
+-- Server version: 5.6.24
+-- PHP Version: 5.5.20
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Table structure for table `faculty_publications`
+--
+
+CREATE TABLE IF NOT EXISTS `faculty_publications` (
+  `recordNumber` int(11) NOT NULL,
+  `internetID` varchar(50) NOT NULL,
+  `scopusID` varchar(35) DEFAULT NULL COMMENT 'Scopus author ID',
+  `scopus_eid` varchar(100) DEFAULT NULL COMMENT 'Scopus eID',
+  `authorPosition` varchar(25) DEFAULT NULL,
+  `authorCount` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `faculty_publications`
+--
+ALTER TABLE `faculty_publications`
+  ADD PRIMARY KEY (`recordNumber`),
+  ADD UNIQUE KEY `ind` (`recordNumber`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `faculty_publications`
+--
+ALTER TABLE `faculty_publications`
+  MODIFY `recordNumber` int(11) NOT NULL AUTO_INCREMENT;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

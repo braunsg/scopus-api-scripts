@@ -1,0 +1,89 @@
+/*
+scopus-api-scripts
+http://www.github.com/braunsg/scopus-api-scripts
+
+Copyright (c) 2015 Steven Braun
+Created: 2015-07-14
+
+This MySQL query creates the structure for a generic table holding bibliographic data 
+about publications authored by faculty/researchers (e.g., title, publication date)
+
+This script is shared under an MIT License, which grants free use, modification, 
+and distribution for all users. See LICENSE.md for more details.
+
+//////////////////////////////////////////////////////////////////////////////////////////
+///// NOTE
+
+This script is adapted from scripts used to pull data for Manifold, the research impact 
+analytics system developed by Steven Braun for the University of Minnesota Medical School
+
+FOR MORE INFO, see
+
+manifold-impact-analytics
+http://www.github.com/braunsg/manifold-impact-analytics
+
+////////////////////////////////////////////////////////////////////////////////////////*/
+
+-- phpMyAdmin SQL Dump
+-- version 4.4.4
+-- http://www.phpmyadmin.net
+--
+-- Server version: 5.6.24
+-- PHP Version: 5.5.20
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+
+--
+-- Table structure for table `publication_data`
+--
+
+CREATE TABLE IF NOT EXISTS `publication_data` (
+  `recordNumber` int(11) NOT NULL COMMENT 'Record number',
+  `scopus_eid` varchar(100) DEFAULT NULL COMMENT 'Scopus electronic identifier for publications',
+  `scopus_pubid` varchar(50) DEFAULT NULL COMMENT 'Scopus pub ID',
+  `pmid` varchar(50) DEFAULT NULL COMMENT 'PubMed ID',
+  `doi` varchar(150) DEFAULT NULL,
+  `pubTitle` varchar(2000) NOT NULL,
+  `pubName` varchar(2000) NOT NULL,
+  `pubDate` date NOT NULL,
+  `displayDate` varchar(150) NOT NULL COMMENT 'Pub date displayed in original',
+  `authors` mediumtext NOT NULL COMMENT 'Authors, pipe-delimited',
+  `pageRange` varchar(50) NOT NULL,
+  `volume` varchar(25) DEFAULT NULL,
+  `issue` varchar(25) DEFAULT NULL,
+  `citedByCount` int(10) DEFAULT NULL,
+  `docType` varchar(10) DEFAULT NULL,
+  `docTypeDescription` varchar(50) DEFAULT NULL,
+  `source` varchar(100) NOT NULL COMMENT 'Source of the publication data'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `publication_data`
+--
+ALTER TABLE `publication_data`
+  ADD PRIMARY KEY (`recordNumber`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `publication_data`
+--
+ALTER TABLE `publication_data`
+  MODIFY `recordNumber` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Record number';
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
