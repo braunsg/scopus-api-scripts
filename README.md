@@ -36,15 +36,14 @@ The following scripts are included in this package:
     A generic script that parses XML dumped from Experts and expands Scopus author IDs 
     store therein
   
-  tables/
-  		faculty_publications.mssql
-  		  MySQL query generating structure for a generic table holding data about
-  		  researcher authorships (publications)
+  tables/faculty_publications.mssql
+  	MySQL query generating structure for a generic table holding data about
+  	researcher authorships (publications)
   		  
-  		publication_data.mssql
-  		  MySQL query generating structure for a generic table holding data about 
-  		  publications, such as title, publication date, and citation count
+  tables/publication_data.mssql
+  	MySQL query generating structure for a generic table holding data about 
+    publications, such as title, publication date, and citation count
   		  
-  		faculty_identifiers.mssql
-  		  MySQL query generating structure for a generic table holding data about 
-  		  researcher IDs, such as Scopus author IDs or ORCIDs
+  tables/faculty_identifiers.mssql
+  	MySQL query generating structure for a generic table holding data about 
+	  researcher IDs, such as Scopus author IDs or ORCIDs
